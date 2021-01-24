@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block content %}
+    {% if books_list %}
+        <h1>{{ title }}</h1>
+        <ul>
+            {% for book in books_list %}
+            <li>
+                <p>{{ book.name }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>No books are available.</p>
+    {% endif %}
+{% endblock %}

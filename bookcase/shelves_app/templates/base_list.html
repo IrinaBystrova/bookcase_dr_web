@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block content %}
+    {% if list %}
+        <h1>{{ title }}</h1>
+        <ul>
+            {% for item in list %}
+            <li>
+                <a href="/shelves_app/{{ partial_url }}/{{ item.id }}/">{{ item.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>No {{ partial_url }} are available.</p>
+    {% endif %}
+{% endblock %}
