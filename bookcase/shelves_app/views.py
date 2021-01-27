@@ -8,6 +8,14 @@ SHELVES_LIST_TITLE = 'List Of Shelves'
 SHELVES_DETAILS_TITLE = 'Books on the {} shelf:'
 
 
+def index(request):
+    context = {
+        'authors_title': AUTHOR_LIST_TITLE,
+        'shelves_title': SHELVES_LIST_TITLE
+    }
+    return render(request, 'index.html', context)
+
+
 def base_list(request, obj, title, partial_url):
     objs = obj.objects.filter()
     context = {
@@ -42,7 +50,21 @@ def author_details(request, author_id):
 
 
 def shelves_details(request, shelf_id):
-    shelf_id = shelf_id[:-1]
+    if type(shelf_id) != int:
+        shelf_id = shelf_id[:-1]
     books = Book.objects.filter(book_shelf__id=shelf_id).order_by('position')
     context = get_context(Shelf, shelf_id, books, SHELVES_DETAILS_TITLE)
-    return render(request, 'base_details.html', context)
+    return render(request, 'shelves_details.html', context)
+
+
+def move_book(request, book_id, direction):
+    book = Book.objects.filter(id=book_id).first()
+    target_position = book.position - 1 if direction == 'up' \
+        else book.position + 1
+
+    book_target = Book.objects.filter(
+        position=target_position, book_shelf__id=book.book_shelf_id).first()
+    if book_target:
+        book.position, book_target.position = book_target.position, book.position
+        book.save(), book_target.save()
+    return shelves_details(request, book.book_shelf_id)

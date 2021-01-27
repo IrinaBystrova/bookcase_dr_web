@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'bookcase.urls'
+ROOT_URLCONF = 'bookshelf.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'bookcase.wsgi.application'
+WSGI_APPLICATION = 'bookshelf.wsgi.application'
 
 
 # Database

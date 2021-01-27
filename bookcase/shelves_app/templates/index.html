@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block content %}
+        <h1>{{ title }}</h1>
+        <ul>
+            <li>
+                <a href="authors_list">{{ authors_title }}</a>
+            </li>
+            <li>
+                <a href="shelves_list">{{ shelves_title }}</a>
+            </li>
+        </ul>
+{% endblock %}

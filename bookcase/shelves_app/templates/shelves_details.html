@@ -1,0 +1,21 @@
+{% extends "base_details.html" %}
+{% load static %}
+
+{% block content %}
+    {% if books_list %}
+        <h1>{{ title }}</h1>
+            {% for book in books_list %}
+            <div>
+                <button onclick="location.href='/shelves_app/move_book/{{ book.id }}/up/'">
+                    <img src="{% static 'images/up-arrow.png' %}" alt="" style="vertical-align: middle">
+                </button>
+                {{ book.name }}
+                <button onclick="location.href='/shelves_app/move_book/{{ book.id }}/down/'">
+                    <img src="{% static 'images/down-arrow.png' %}" alt="" style="vertical-align: middle">
+                </button>
+            </div><br>
+            {% endfor %}
+    {% else %}
+        <p>No books are available.</p>
+    {% endif %}
+{% endblock %}
