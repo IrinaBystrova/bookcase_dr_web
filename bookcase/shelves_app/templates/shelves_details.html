@@ -4,6 +4,9 @@
 {% block content %}
     {% if books_list %}
         <h1>{{ title }}</h1>
+            <div>
+                <button onclick="location.href='shelves_list'">Back to shelves</button>
+            </div><br>
             {% for book in books_list %}
             <div>
                 <button onclick="location.href='/shelves_app/move_book/{{ book.id }}/up/'">
